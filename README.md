@@ -1,4 +1,4 @@
-# Database Drill Many To Many Schema 
+# Schema Design: Many-to-many Schema 
  
 ##Learning Competencies 
 
