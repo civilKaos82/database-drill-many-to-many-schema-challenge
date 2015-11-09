@@ -1,10 +1,5 @@
 # Schema Design: Many-to-many Schema 
  
-##Learning Competencies 
-
-* Design database schema from problem data
-* Model a one-to-many relationship in a relational database
-
 ##Summary 
 
  Many-to-many relationships are relatively easy to understand, but slightly more complicated to implement.  We recommend that you solve the one-to-many challenge before moving into
