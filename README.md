@@ -10,7 +10,7 @@ Conceptually, many-to-many relationships are relatively easy to understand, but 
 ![many-to-many schema](readme-assets/many-to-many-schema.png)  
 *Figure 1*.  Modeling a many-to-many relationship between authors and books.
 
-In Figure 1 we model the one of the examples given earlier, using the *authors_books* table as a join table between the authors and books tables.  Look at the join table.  What data does it hold?
+In Figure 1 we model one of the examples given earlier, using the *authors_books* table as a join table between the authors and books tables.  Look at the join table.  What data does it hold?
 
 The join table contains two foreign key fields:  one that points to an author and one that points to a book.  For a given author whose id we know, how would we use the join table to find which books the author had written?
 
