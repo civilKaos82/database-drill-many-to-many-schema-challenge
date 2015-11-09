@@ -24,6 +24,8 @@ Using the [schema designer], model a database schema that will support the follo
 - Users can review products, giving a score from 1 to 4 and writing a description.
 - Reviews can be favorited by users.
 
+When our schema is complete, take a screenshot of the design and commit it.
+
 
 ## Conclusion
 Like the one-to-many relationship, the many-to-many relationship is fundamental to designing a database schema.  We need to recognize when such a relationship is appropriate and then know how to implement the relationship using a join table.
