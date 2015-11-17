@@ -24,4 +24,18 @@ describe User do
       expect(user.reviews).to include review
     end
   end
+
+  describe 'favoriting reviews' do
+    let(:favoriting) { double('favoriting') }
+
+    it 'has a collection of favoritings' do
+      expect(user.favoritings).to match_array []
+    end
+
+    it 'can add a favoriting' do
+      expect(user.favoritings).to_not include favoriting
+      user.add_favoriting(favoriting)
+      expect(user.favoritings).to include favoriting
+    end
+  end
 end

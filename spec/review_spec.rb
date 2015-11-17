@@ -34,4 +34,18 @@ describe Review do
       expect(reviewed_products_reviews).to include review
     end
   end
+
+  describe 'being favorited' do
+    let(:favoriting) { double('favoriting') }
+
+    it 'has a collection of favoritings' do
+      expect(review.favoritings).to match_array []
+    end
+
+    it 'can add a favoriting' do
+      expect(review.favoritings).to_not include favoriting
+      review.add_favoriting(favoriting)
+      expect(review.favoritings).to include favoriting
+    end
+  end
 end
