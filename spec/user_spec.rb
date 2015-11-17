@@ -10,4 +10,18 @@ describe User do
   it 'has a username' do
     expect(user.username).to eq 'superuser'
   end
+
+  describe 'reviewing products' do
+    let(:review) { double('review') }
+
+    it 'has a collection of reviews' do
+      expect(user.reviews).to match_array []
+    end
+
+    it 'can add a review' do
+      expect(user.reviews).to_not include review
+      user.add_review(review)
+      expect(user.reviews).to include review
+    end
+  end
 end
