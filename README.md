@@ -18,13 +18,28 @@ The join table contains two foreign key fields:  one that points to an author an
 
 
 ## Releases
+### Pre-release:  Read and Run the Product Reviews Script
+We have a small script that allows us to view product reviews.  We can view reviews written by a specific user or the reviews written for a specific product.  In addition, we can view reviews which a specific user has favorited.  (see `runner.rb`)
+
+```
+# View reviews made by a user
+$ ruby runner.rb users ooh_la_larain reviews
+
+# View reviews favorited by a user
+$ ruby runner.rb users dont_be_thad_guy favorites
+
+# View reviews for a product
+$ ruby runner.rb products camera reviews
+```
+*Figure 1* Passing command line arguments to view specific sets of reviews.
+
+The script relies on command line arguments.  We can see the three valid argument combinations in Figure 1.  To get a sense for how the script works, let's run the script passing in the three sets of arguments from Figure 1.  Then, let's read through the code base. See which classes are present and how they relate to each other. We can proceed to the next release when we feel comfortable that we understand the how the script works and how the different classes relate to each other.
+
+
 ### Release 0: Design a Schema to Support Product Reviews
-Using the [schema designer], model a database schema that will support the following functionality.  Assume that our application has (1) users with e-mail addresses and usernames and (2) products with names and descriptions.
+The user of this script is interested in expanding it, and we need to design a database schema that will support the application. In other words, we need to design a database that will store the data that is currently contained within the file `runner.rb`: which users there are, their usernames, which reviews each has written, which products there are, for which product each review was written, etc.
 
-- Users can review products, giving a score from 1 to 4 and writing a description.
-- Reviews can be favorited by users.
-
-When our schema is complete, take a screenshot of the design and commit it.
+We should use the [schema designer] to create our schema. When our schema is complete, take a screenshot of the design and commit it.
 
 
 ## Conclusion
@@ -32,4 +47,3 @@ Like the one-to-many relationship, the many-to-many relationship is fundamental 
 
 [one-to-many challenge]: ../../../database-drill-one-to-many-schema-challenge
 [schema designer]: https://schemadesigner.devbootcamp.com/
-
