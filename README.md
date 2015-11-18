@@ -21,7 +21,7 @@ The join table contains two foreign key fields:  one that points to an author an
 ### Pre-release:  Read and Run the Product Reviews Script
 We have a small script that allows us to view product reviews.  We can view reviews written by a specific user or the reviews written for a specific product.  In addition, we can view reviews which a specific user has favorited.  (see `runner.rb`)
 
-```
+```bash
 # View reviews made by a user
 $ ruby runner.rb users ooh_la_larain reviews
 
