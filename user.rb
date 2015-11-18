@@ -9,7 +9,9 @@ class User
   end
 
   def add_review(review)
-    reviews << review if self == review.author
+    if self == review.author && !reviews.include?(review)
+      reviews << review
+    end
   end
 
   def add_favoriting(favoriting)

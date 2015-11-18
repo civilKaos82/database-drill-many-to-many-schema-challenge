@@ -30,6 +30,13 @@ describe User do
       user.add_review(unauthored_review)
       expect(user.reviews).to_not include unauthored_review
     end
+
+    it 'does not add the same review twice' do
+      user.add_review(authored_review)
+      expect(user.reviews).to include authored_review
+
+      expect { user.add_review(authored_review) }.to_not change { user.reviews }
+    end
   end
 
   describe 'favoriting reviews' do
