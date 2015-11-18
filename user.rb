@@ -15,6 +15,8 @@ class User
   end
 
   def add_favoriting(favoriting)
-    favoritings << favoriting if self == favoriting.favoritor
+    if self == favoriting.favoritor && !favoritings.include?(favoriting)
+      favoritings << favoriting
+    end
   end
 end

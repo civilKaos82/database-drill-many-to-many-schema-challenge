@@ -58,5 +58,12 @@ describe User do
       user.add_favoriting(unfavorited_favoriting)
       expect(user.favoritings).to_not include unfavorited_favoriting
     end
+
+    it 'does not add the same favoriting twice' do
+      user.add_favoriting(favorited_favoriting)
+      expect(user.favoritings).to include favorited_favoriting
+
+      expect { user.add_favoriting(favorited_favoriting) }.to_not change { user.favoritings }
+    end
   end
 end
