@@ -1,7 +1,13 @@
+# Require models
 require_relative 'user'
 require_relative 'product'
 require_relative 'review'
 require_relative 'favoriting'
+
+# Require views
+require_relative 'user_reviews_view'
+require_relative 'user_favoritings_view'
+require_relative 'product_reviews_view'
 
 # create the users, products, reviews, and favoritings
   # create users
@@ -15,9 +21,9 @@ require_relative 'favoriting'
 
 
   # create products
-  mixer = Product.new(name: 'Mixer', description: 'This mixer is for your standard recipes. The 4.5-quart stainless steel mixing bowl and 10 speeds easily mixes, kneads and whips your favorite ingredients. For even more versatility, the power hub is designed to use the motor\'s power to operate optional attachments from food grinders to pasta makers and more.')
-  camera = Product.new(name: 'Camera', description: '26X Zoom 35MM. Full HD 720P. This camera is powered by AA batteries readily available almost anywhere.')
-  laptop = Product.new(name: 'Laptop', description: 'Looking for a notebook that can keep up with your busy day? This one is the hard-working, smartly-designed notebook that\'s light on price.')
+  mixer = Product.new(name: 'mixer', description: 'This mixer is for your standard recipes. The 4.5-quart stainless steel mixing bowl and 10 speeds easily mixes, kneads and whips your favorite ingredients. For even more versatility, the power hub is designed to use the motor\'s power to operate optional attachments from food grinders to pasta makers and more.')
+  camera = Product.new(name: 'camera', description: '26X Zoom 35MM. Full HD 720P. This camera is powered by AA batteries readily available almost anywhere.')
+  laptop = Product.new(name: 'laptop', description: 'Looking for a notebook that can keep up with your busy day? This one is the hard-working, smartly-designed notebook that\'s light on price.')
 
   products = [mixer, camera, laptop]
 
@@ -47,3 +53,37 @@ require_relative 'favoriting'
   Favoriting.new(favoritor: chris, review: review_sharleen_camera)
   Favoriting.new(favoritor: sharleen, review: review_larain_laptop)
   Favoriting.new(favoritor: larain, review: review_raza_laptop)
+
+
+
+# Execute if command line arguments given
+if ARGV.any?
+  collection = ARGV[0]
+  item       = ARGV[1]
+  option     = ARGV[2]
+
+  puts case collection
+       when 'users'
+         if user = users.find { |user| user.username == item }
+           case option
+           when 'reviews'
+             UserReviewsView.new(user)
+           when 'favorites'
+             UserFavoritingsView.new(user)
+           end
+         else
+           "No user with the username '#{item}' found."
+         end
+       when 'products'
+         if product = products.find { |product| product.name == item }
+           case option
+           when 'reviews'
+             ProductReviewsView.new(product)
+           end
+         else
+           "No product with the name '#{item}' found."
+         end
+       else
+         'Does not compute.'
+       end
+end
