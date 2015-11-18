@@ -30,5 +30,12 @@ describe Product do
       product.add_review(other_product_review)
       expect(product.reviews).to_not include other_product_review
     end
+
+    it 'does not add the same review twice' do
+      product.add_review(product_review)
+      expect(product.reviews).to include product_review
+
+      expect { product.add_review(product_review) }.to_not change { product.reviews }
+    end
   end
 end

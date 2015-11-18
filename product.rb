@@ -8,6 +8,8 @@ class Product
   end
 
   def add_review(review)
-    reviews << review if self == review.product
+    if self == review.product && !reviews.include?(review)
+      reviews << review
+    end
   end
 end
