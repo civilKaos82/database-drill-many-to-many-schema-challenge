@@ -12,16 +12,23 @@ describe User do
   end
 
   describe 'reviewing products' do
-    let(:review) { double('review') }
+    let(:authored_review) { double('review', { author: user}) }
+    let(:unauthored_review) { double('review', { author: double('other user') }) }
 
     it 'has a collection of reviews' do
       expect(user.reviews).to match_array []
     end
 
     it 'can add a review' do
-      expect(user.reviews).to_not include review
-      user.add_review(review)
-      expect(user.reviews).to include review
+      expect(user.reviews).to_not include authored_review
+      user.add_review(authored_review)
+      expect(user.reviews).to include authored_review
+    end
+
+    it 'does not add a review it did not author' do
+      expect(user.reviews).to_not include unauthored_review
+      user.add_review(unauthored_review)
+      expect(user.reviews).to_not include unauthored_review
     end
   end
 

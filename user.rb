@@ -9,7 +9,7 @@ class User
   end
 
   def add_review(review)
-    reviews << review
+    reviews << review if self == review.author
   end
 
   def add_favoriting(review)
