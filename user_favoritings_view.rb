@@ -17,6 +17,6 @@ class UserFavoritingsView
 
   private
   def favoriting_text(favoriting)
-    "#{favoriting.review.author.username.upcase} REVIEWED #{favoriting.review.product.name.upcase}:\n#{favoriting.review.description}"
+    "#{favoriting.review.author.username.upcase} reviewed #{favoriting.review.product.name.upcase} (score: #{favoriting.review.score})\n#{favoriting.review.description}"
   end
 end

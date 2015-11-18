@@ -17,6 +17,6 @@ class UserReviewsView
 
   private
   def review_text(review)
-    "#{review.product.name.upcase}\n#{review.description}"
+    "#{review.product.name.upcase} (score: #{review.score})\n#{review.description}"
   end
 end
