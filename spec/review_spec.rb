@@ -54,5 +54,12 @@ describe Review do
       review.add_favoriting(other_review_favoriting)
       expect(review.favoritings).to_not include other_review_favoriting
     end
+
+    it 'does not add the same favoriting twice' do
+      review.add_favoriting(review_favoriting)
+      expect(review.favoritings).to include review_favoriting
+
+      expect { review.add_favoriting(review_favoriting) }.to_not change { review.favoritings }
+    end
   end
 end

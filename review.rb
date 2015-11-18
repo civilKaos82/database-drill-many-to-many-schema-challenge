@@ -13,7 +13,9 @@ class Review
   end
 
   def add_favoriting(favoriting)
-    favoritings << favoriting if self == favoriting.review
+    if self == favoriting.review && !favoritings.include?(favoriting)
+      favoritings << favoriting
+    end
   end
 
   private
