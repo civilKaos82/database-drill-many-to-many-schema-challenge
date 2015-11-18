@@ -12,16 +12,23 @@ describe Product do
   end
 
   describe 'being reviewed' do
-    let(:review) { double('review') }
+    let(:product_review) { double('review', product: product) }
+    let(:other_product_review) { double('review', product: double('other product')) }
 
     it 'has a collection of reviews' do
       expect(product.reviews).to match_array []
     end
 
     it 'can add a review' do
-      expect(product.reviews).to_not include review
-      product.add_review(review)
-      expect(product.reviews).to include review
+      expect(product.reviews).to_not include product_review
+      product.add_review(product_review)
+      expect(product.reviews).to include product_review
+    end
+
+    it 'does not add a review for which it is not the reviewed product' do
+      expect(product.reviews).to_not include other_product_review
+      product.add_review(other_product_review)
+      expect(product.reviews).to_not include other_product_review
     end
   end
 end
