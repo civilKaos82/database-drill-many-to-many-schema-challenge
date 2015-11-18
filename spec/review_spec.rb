@@ -36,16 +36,23 @@ describe Review do
   end
 
   describe 'being favorited' do
-    let(:favoriting) { double('favoriting') }
+    let(:review_favoriting) { double('favoriting', review: review) }
+    let(:other_review_favoriting) { double('favoriting', review: double('other review')) }
 
     it 'has a collection of favoritings' do
       expect(review.favoritings).to match_array []
     end
 
     it 'can add a favoriting' do
-      expect(review.favoritings).to_not include favoriting
-      review.add_favoriting(favoriting)
-      expect(review.favoritings).to include favoriting
+      expect(review.favoritings).to_not include review_favoriting
+      review.add_favoriting(review_favoriting)
+      expect(review.favoritings).to include review_favoriting
+    end
+
+    it 'does not add a favoriting where it is not the favorited review' do
+      expect(review.favoritings).to_not include other_review_favoriting
+      review.add_favoriting(other_review_favoriting)
+      expect(review.favoritings).to_not include other_review_favoriting
     end
   end
 end

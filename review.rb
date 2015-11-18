@@ -13,7 +13,7 @@ class Review
   end
 
   def add_favoriting(favoriting)
-    favoritings << favoriting
+    favoritings << favoriting if self == favoriting.review
   end
 
   private
