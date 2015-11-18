@@ -13,7 +13,7 @@ class Review
   end
 
   def add_favoriting(favoriting)
-    if self == favoriting.review && !favoritings.include?(favoriting)
+    if review_being_favorited?(favoriting) && new_favoriting?(favoriting)
       favoritings << favoriting
     end
   end
@@ -25,5 +25,13 @@ class Review
 
   def add_self_to_products_reviews
     product.reviews << self
+  end
+
+  def review_being_favorited?(favoriting)
+    self == favoriting.review
+  end
+
+  def new_favoriting?(favoriting)
+    !favoritings.include?(favoriting)
   end
 end
