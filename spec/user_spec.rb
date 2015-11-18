@@ -33,16 +33,23 @@ describe User do
   end
 
   describe 'favoriting reviews' do
-    let(:favoriting) { double('favoriting') }
+    let(:favorited_favoriting) { double('favoriting', { favoritor: user }) }
+    let(:unfavorited_favoriting) { double('favoriting', { favoritor: double('other user') }) }
 
     it 'has a collection of favoritings' do
       expect(user.favoritings).to match_array []
     end
 
     it 'can add a favoriting' do
-      expect(user.favoritings).to_not include favoriting
-      user.add_favoriting(favoriting)
-      expect(user.favoritings).to include favoriting
+      expect(user.favoritings).to_not include favorited_favoriting
+      user.add_favoriting(favorited_favoriting)
+      expect(user.favoritings).to include favorited_favoriting
+    end
+
+    it 'does not add a favoriting where it is not the favoritor' do
+      expect(user.favoritings).to_not include unfavorited_favoriting
+      user.add_favoriting(unfavorited_favoriting)
+      expect(user.favoritings).to_not include unfavorited_favoriting
     end
   end
 end

@@ -12,7 +12,7 @@ class User
     reviews << review if self == review.author
   end
 
-  def add_favoriting(review)
-    favoritings << review
+  def add_favoriting(favoriting)
+    favoritings << favoriting if self == favoriting.favoritor
   end
 end
