@@ -5,10 +5,16 @@ raza = User.new(email: 'raza@gmail.com', username: 'ra_ra_raza')
 thaddeus = User.new(email: 'thaddeus@gmail.com', username: 'dont_be_thad_guy')
 chris = User.new(email: 'chris@gmail.com', username: 'just_chris')
 
+users = [sharleen, larain, raza, thaddeus, chris]
+
+
 # create products
 mixer = Product.new(name: 'Mixer', description: 'This mixer is for your standard recipes. The 4.5-quart stainless steel mixing bowl and 10 speeds easily mixes, kneads and whips your favorite ingredients. For even more versatility, the power hub is designed to use the motor\'s power to operate optional attachments from food grinders to pasta makers and more.')
 camera = Product.new(name: 'Camera', description: '26X Zoom 35MM. Full HD 720P. This camera is powered by AA batteries readily available almost anywhere.')
 laptop = Product.new(name: 'Laptop', description: 'Looking for a notebook that can keep up with your busy day? This one is the hard-working, smartly-designed notebook that\'s light on price.')
+
+products = [mixer, camera, laptop]
+
 
 # create user reviews of products
 review_sharleen_mixer = Review.new(author: sharleen, product: mixer, score: 3, description: 'The big difference between this mixer and the standard "two beater" models you may be familiar with is that it uses a single mixing attachment that rotates in two motions- it not only spins on its own axis, it also is rotated around the edge of the bowl. This does an extremely effective job of mixing ingredients without need for the bowl rotating, since the mixing motion covers the entire bowl. For most mixing jobs, it also requires no scraping of the sides with the spatula.')
