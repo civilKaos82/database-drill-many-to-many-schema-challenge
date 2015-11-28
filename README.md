@@ -1,13 +1,13 @@
-# Schema Design: Many-to-many Schema 
- 
-## Summary 
+# Schema Design: Many-to-many Schema
+
+## Summary
 In [another challenge][one-to-many challenge], we looked at the one-to-many relationship between two database tables.  In this challenge we're going to look at another relationship:  many-to-many.
 
-Here are some situations for when a many-to-many relationship would be appropriate.  A magazine has many subscribers, and a subscriber can subscribe to many magazines.  A customer reviews many products, and a product has many reviewers.  An author can write many books, and a book can be have many authors.
+Here are some situations for when a many-to-many relationship would be appropriate.  A magazine has many subscribers, and a subscriber can subscribe to many magazines.  A customer reviews many products, and a product has many reviewers.  An author can write many books, and a book can have many authors.
 
 Conceptually, many-to-many relationships are relatively easy to understand, but they can be slightly more complicated to implement.  In order to model a many-to-many relationship, we need to introduce a third table, a *join table*.
 
-![many-to-many schema](readme-assets/many-to-many-schema.png)  
+![many-to-many schema](readme-assets/many-to-many-schema.png)
 *Figure 1*.  Modeling a many-to-many relationship between authors and books.
 
 In Figure 1 we model one of the examples given earlier, using the *authors_books* table as a join table between the authors and books tables.  Look at the join table.  What data does it hold?
