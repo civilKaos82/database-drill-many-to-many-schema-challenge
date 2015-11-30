@@ -7,7 +7,7 @@ Here are some situations for when a many-to-many relationship would be appropria
 
 Conceptually, many-to-many relationships are relatively easy to understand, but they can be slightly more complicated to implement.  In order to model a many-to-many relationship, we need to introduce a third table, a *join table*.
 
-![many-to-many schema](readme-assets/many-to-many-schema.png)
+![many-to-many schema](readme-assets/many-to-many-schema.png)  
 *Figure 1*.  Modeling a many-to-many relationship between authors and books.
 
 In Figure 1 we model one of the examples given earlier, using the *authors_books* table as a join table between the authors and books tables.  Look at the join table.  What data does it hold?
@@ -31,9 +31,9 @@ $ ruby runner.rb users dont_be_thad_guy favorites
 # View reviews for a product
 $ ruby runner.rb products camera reviews
 ```
-*Figure 1* Passing command line arguments to view specific sets of reviews.
+*Figure 2*. Passing command line arguments to view specific sets of reviews.
 
-The script relies on command line arguments.  We can see the three valid argument combinations in Figure 1.  To get a sense for how the script works, let's run the script passing in the three sets of arguments from Figure 1.  Then, let's read through the code base. See which classes are present and how they relate to each other. We can proceed to the next release when we feel comfortable that we understand the how the script works and how the different classes relate to each other.
+The script relies on command line arguments.  We can see the three valid argument combinations in Figure 2.  To get a sense for how the script works, let's run the script passing in the three sets of arguments from Figure 2.  Then, let's read through the code base. See which classes are present and how they relate to each other. We can proceed to the next release when we feel comfortable that we understand the how the script works and how the different classes relate to each other.
 
 
 ### Release 0: Design a Schema to Support Product Reviews
