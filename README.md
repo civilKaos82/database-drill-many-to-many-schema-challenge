@@ -1,52 +1,49 @@
-# Database Drill Many To Many Schema 
- 
-##Learning Competencies 
+# Schema Design: Many-to-many Schema
 
-* Design database schema from problem data
-* Model a one-to-many relationship in a relational database
+## Summary
+In [another challenge][one-to-many challenge], we looked at the one-to-many relationship between two database tables.  In this challenge we're going to look at another relationship:  many-to-many.
 
-##Summary 
+Here are some situations for when a many-to-many relationship would be appropriate.  A magazine has many subscribers, and a subscriber can subscribe to many magazines.  A customer reviews many products, and a product has many reviewers.  An author can write many books, and a book can have many authors.
 
- Many-to-many relationships are relatively easy to understand, but slightly more complicated to implement.  We recommend that you solve the one-to-many challenge before moving into
-the many-to-many relationships.
+Conceptually, many-to-many relationships are relatively easy to understand, but they can be slightly more complicated to implement.  In order to model a many-to-many relationship, we need to introduce a third table, a *join table*.
 
-A newsletter has many subscribers, and a subscriber might subscribe to many newsletters.  A blog post can have many tags ("funny", "politics", etc.), and a given tag can be on many blog posts.  A book can have multiple authors, and an author can write many books.
+![many-to-many schema](readme-assets/many-to-many-schema.png)
+*Figure 1*.  Modeling a many-to-many relationship between authors and books.
 
-We model this relationship by creating a **join table**.  It looks like this:
+In Figure 1 we model one of the examples given earlier, using the *authors_books* table as a join table between the authors and books tables.  Look at the join table.  What data does it hold?
 
-<pre>
-+------------+       +---------------+       +--------------+
-| authors    |       | authors_books |       | books        |
-+------------+       +---------------+       +--------------+
-| id         |&lt;--\   | id            |    /-&gt;| id           |
-| first_name |    \--| author_id     |   /   | title        |
-| last_name  |       | book_id       |--/    | published_at |
-| created_at |       +---------------+       | created_at   |
-| updated_at |                               | updated_at   |
-+------------+                               +--------------+
-</pre>
+The join table contains two foreign key fields:  one that points to an author and one that points to a book.  For a given author whose id we know, how would we use the join table to find which books the author had written?
 
-Here <code>authors_books</code> is the join table and it tells us which authors wrote which books.  The actual data about each author and each book is stored in one place: the <code>authors</code> and <code>books</code> tables, respectively.
+*Note:*  A join table can have more fields than just the two foreign key fields.  For example, a join table linking magazines to subscribers could hold information like the date the subscription began, the length of the subscription, etc.  In such cases, we would also add *created_at* and *updated_at* fields.
 
-You might notice a ["Don't repeat yourself" priciple](http://en.wikipedia.org/wiki/Don't_repeat_yourself) at work.  Removing redundancy from a database schema so that each bit of data is stored in one and only one place is called **normalization**.  We'll learn more about that later.
 
-If you want, you can read about [database normalization on Wikipedia](http://en.wikipedia.org/wiki/Database_normalization) or [this decent article from Microsoft](http://support.microsoft.com/kb/283878).  The goal of normalization is to remove data redundancy.
+## Releases
+### Pre-release:  Read and Run the Product Reviews Script
+We have a small script that allows us to view product reviews.  We can view reviews written by a specific user or the reviews written for a specific product.  In addition, we can view reviews which a specific user has favorited.  (see `runner.rb`)
 
-##Releases
+```bash
+# View reviews made by a user
+$ ruby runner.rb users ooh_la_larain reviews
 
-###Release 0 : Implement the schema
+# View reviews favorited by a user
+$ ruby runner.rb users dont_be_thad_guy favorites
 
-Implement the above author/book schema.
-Remember to add the appropriate foreign keys!  
+# View reviews for a product
+$ ruby runner.rb products camera reviews
+```
+*Figure 1* Passing command line arguments to view specific sets of reviews.
 
-Each book also has one publisher, and a publisher can publish many books.  Add a <code>publishers</code> table to the schema above so it and <code>books</code> are in a one-to-many relationship.  
+The script relies on command line arguments.  We can see the three valid argument combinations in Figure 1.  To get a sense for how the script works, let's run the script passing in the three sets of arguments from Figure 1.  Then, let's read through the code base. See which classes are present and how they relate to each other. We can proceed to the next release when we feel comfortable that we understand the how the script works and how the different classes relate to each other.
 
-The <code>publishers</code> table should have a <code>name</code> field, in addition to the fields we include by convention (primary key, timestamps, etc.). 
 
-Use [SQL Designer][] to create your schema.  When you are done, save the XML of your schema and copy it to the source file `many_to_many_schema.md`. Then, take a screenshot of your final schema design, and upload it using a free image-upload service like [Min.us](http://minus.com).  Paste the URL of the screenshot into your file (before your XML code). 
+### Release 0: Design a Schema to Support Product Reviews
+The user of this script is interested in expanding it, and we need to design a database schema that will support the application. In other words, we need to design a database that will store the data that is currently contained within the file `runner.rb`: which users there are, their usernames, which reviews each has written, which products there are, for which product each review was written, etc.
 
-<!-- ##Optimize Your Learning  -->
+We should use the [schema designer] to create our schema. When our schema is complete, take a screenshot of the design and commit it.
 
-##Resources
 
-* [SQL Designer](https://socrates.devbootcamp.com//sql.html)
+## Conclusion
+Like the one-to-many relationship, the many-to-many relationship is fundamental to designing a database schema.  We need to recognize when such a relationship is appropriate and then know how to implement the relationship using a join table.
+
+[one-to-many challenge]: ../../../database-drill-one-to-many-schema-challenge
+[schema designer]: https://schemadesigner.devbootcamp.com/
